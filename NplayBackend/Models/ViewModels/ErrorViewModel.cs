@@ -1,4 +1,4 @@
-namespace NplayBackend.Models
+namespace NplayBackend.Models.ViewModels
 {
     public class ErrorViewModel
     {

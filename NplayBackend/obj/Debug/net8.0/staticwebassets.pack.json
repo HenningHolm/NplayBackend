@@ -5,6 +5,26 @@
       "PackagePath": "staticwebassets\\NplayBackend.bundle.scp.css"
     },
     {
+      "Id": "C:\\Git\\NplayBackend\\NplayBackend\\wwwroot\\Images\\Shared\\LojalIcon.png",
+      "PackagePath": "staticwebassets\\Images\\Shared\\LojalIcon.png"
+    },
+    {
+      "Id": "C:\\Git\\NplayBackend\\NplayBackend\\wwwroot\\Images\\Shared\\LojalLogo.png",
+      "PackagePath": "staticwebassets\\Images\\Shared\\LojalLogo.png"
+    },
+    {
+      "Id": "C:\\Git\\NplayBackend\\NplayBackend\\wwwroot\\Images\\Shared\\VippsHurtigkasseButton.png",
+      "PackagePath": "staticwebassets\\Images\\Shared\\VippsHurtigkasseButton.png"
+    },
+    {
+      "Id": "C:\\Git\\NplayBackend\\NplayBackend\\wwwroot\\Images\\Shared\\VippsLoginButton.png",
+      "PackagePath": "staticwebassets\\Images\\Shared\\VippsLoginButton.png"
+    },
+    {
+      "Id": "C:\\Git\\NplayBackend\\NplayBackend\\wwwroot\\Images\\Shared\\VippsRecurringButton.png",
+      "PackagePath": "staticwebassets\\Images\\Shared\\VippsRecurringButton.png"
+    },
+    {
       "Id": "C:\\Git\\NplayBackend\\NplayBackend\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

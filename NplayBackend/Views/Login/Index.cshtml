@@ -1,0 +1,39 @@
+﻿@model NplayBackend.Models.ViewModels.SharedContentModel
+
+<div>
+    <div class="col-8">
+        @Html.Raw(@Model.HeaderHtml)
+    </div>
+    <br />
+</div>
+<div class="container">
+    <div class="row">
+        @Html.Raw(@Model.ImagesHtml)
+    </div>
+</div>
+<br />
+<div id="loginSection">
+    <h1>Logg inn med Vipps</h1>
+    <p>
+        Logg inn på Min side om du ønsker å bli fadder, eller håndtere dine avtaler hos Our Children Learning.<br />
+        Vi bruker Vipps som sikker identifisering ved pålogging.
+    </p>
+    <input id="button-login" type='button' onclick='window.location = "@Url.Action("","Secure")";' />
+</div>
+
+
+<style>
+    #loginSection {
+        text-align: center;
+    }
+
+    #button-login {
+        background-image: url("/Images/Shared/VippsLoginButton.png");
+        height: 44px;
+        width: 250px;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        background-size: contain;
+        border: none;
+    }
+</style>

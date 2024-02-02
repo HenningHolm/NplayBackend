@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using NplayBackend.Models;
+using NplayBackend.Models.ViewModels;
 using System.Diagnostics;
 
 namespace NplayBackend.Controllers.View
