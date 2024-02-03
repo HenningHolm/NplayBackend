@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\Api\" />
     <Folder Include="Models\Dto\" />
   </ItemGroup>
 

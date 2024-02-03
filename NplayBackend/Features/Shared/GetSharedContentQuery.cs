@@ -15,9 +15,9 @@ namespace NplayBackend.Features.Shared
     {
         private readonly ILogger<GetSharedContentQuery> _logger;
         private readonly OrganisationSettings _organisationSettings;
-        private readonly ApplicationDbContext _dbContext;
+        private readonly NplayDbContext _dbContext;
 
-        public GetSharedContentQuery(ApplicationDbContext dbContext, ILogger<GetSharedContentQuery> logger, IOptions<OrganisationSettings> organisationSettings)
+        public GetSharedContentQuery(NplayDbContext dbContext, ILogger<GetSharedContentQuery> logger, IOptions<OrganisationSettings> organisationSettings)
         {
             _dbContext = dbContext;
             _logger = logger;

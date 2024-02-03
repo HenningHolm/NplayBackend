@@ -1,15 +1,18 @@
 ﻿using Lojal.Data.Enitites;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using NplayBackend.Data.Entities;
 
 namespace NplayBackend.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class NplayDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public NplayDbContext(DbContextOptions<NplayDbContext> options)
             : base(options)
         {
         }
+
+        public DbSet<Song> Songs { get; set; }
 
         //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         //public DbSet<AuditLog> Audit { get; set; }
