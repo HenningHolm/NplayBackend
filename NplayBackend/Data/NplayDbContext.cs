@@ -7,19 +7,33 @@ namespace NplayBackend.Data
 {
     public class NplayDbContext : IdentityDbContext
     {
+        //public DbSet<Song> Songs { get; set; }
+
         public NplayDbContext(DbContextOptions<NplayDbContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Song> Songs { get; set; }
-
-        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        //public DbSet<AuditLog> Audit { get; set; }
-
-
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
+        //{ 
+        //    modelBuilder.Entity<Song>(song =>
+        //    {
+        //        //song.Property(s => s.Id).IsRequired();
+        //        //song.Property(s => s.Name).HasMaxLength(255).IsRequired();
+        //        //song.Property(s => s.Artist).HasMaxLength(255).IsRequired();
+        //        //song.Property(s => s.Published);
+
+        //        var seedSongs = SeedBag.GetSongs();
+        //        song.HasData(seedSongs);
+        //    }); 
+        //}
+
+            //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+            //public DbSet<AuditLog> Audit { get; set; }
+
+
+            //protected override void OnModelCreating(ModelBuilder modelBuilder)
+            //{
 
             //modelBuilder.Entity<ApplicationUser>(appUser =>
             //{
@@ -44,6 +58,6 @@ namespace NplayBackend.Data
             //    //s => (Currency)Enum.Parse(typeof(Currency), s));
             //});
 
-        //}
-    }
+            //}
+        }
 }

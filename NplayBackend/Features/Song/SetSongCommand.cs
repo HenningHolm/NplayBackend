@@ -1,7 +1,14 @@
 ﻿using NplayBackend.Data;
+using NplayBackend.Models.Dto;
 namespace NplayBackend.Features.Song;
 
-public class SetSongCommand
+public interface ISetSongCommand
+{
+    Task ExecuteAsync(SongDto song);
+}
+
+
+public class SetSongCommand : ISetSongCommand
 {
     private readonly ILogger<SetSongCommand> _logger;
     private readonly NplayDbContext _context;
@@ -12,7 +19,7 @@ public class SetSongCommand
         _context = context;
     }
 
-    public async Task ExecuteAsync(string message)
+    public async Task ExecuteAsync(SongDto song)
     {
         try
         {

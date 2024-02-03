@@ -15,9 +15,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Api\" />
-    <Folder Include="Models\Dto\" />
-  </ItemGroup>
-
 </Project>

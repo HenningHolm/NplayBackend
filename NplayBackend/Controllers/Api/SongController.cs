@@ -1,83 +1,57 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NplayBackend.Features.Song;
+using NplayBackend.Models.Dto;
 
-namespace NplayBackend.Controllers.Api
+namespace NplayBackend.Controllers.Api;
+
+[Authorize]
+[Route("api/[controller]")]
+[ApiController]
+public class SongController : ControllerBase
 {
-    public class SongController : Controller
+    private readonly ILogger<SongController> _logger;
+    private readonly ISetSongCommand _setSongCommand;
+    private readonly IGetSongQuery _getSongQuery;
+
+    public SongController(ILogger<SongController> logger, IGetSongQuery getSongQuery, ISetSongCommand setSongCommand)
     {
-        // GET: SongController
-        public ActionResult Index()
+        _logger = logger;
+        _getSongQuery = getSongQuery;
+        _setSongCommand = setSongCommand;
+    }
+    [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<SongDto>> GetSong(string id)
+    
+    {
+        try
         {
-            return View();
-        }
-
-        // GET: SongController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: SongController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: SongController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            var song = await _getSongQuery.ExecuteAsync(id);
+            if (song == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
-            {
-                return View();
-            }
+            return Ok(song);
         }
-
-        // GET: SongController/Edit/5
-        public ActionResult Edit(int id)
+        catch (Exception ex)
         {
-            return View();
+            return BadRequest(ex.Message);
         }
-
-        // POST: SongController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+    }
+    [HttpPost]
+    public async Task<ActionResult> SetNote(SongDto song)
+    {
+        try
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _setSongCommand.ExecuteAsync(song);
+            return Ok();
         }
-
-        // GET: SongController/Delete/5
-        public ActionResult Delete(int id)
+        catch (Exception ex)
         {
-            return View();
-        }
-
-        // POST: SongController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return BadRequest(ex.Message);
         }
     }
 }
+
