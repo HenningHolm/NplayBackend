@@ -26,6 +26,9 @@ public class SongController : ControllerBase
     public async Task<ActionResult<SongDto>> GetSong(string id)
     
     {
+        // get user info
+        var user = User;
+
         try
         {
             var song = await _getSongQuery.ExecuteAsync(id);

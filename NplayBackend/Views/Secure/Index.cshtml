@@ -1,8 +1,18 @@
 ﻿@{
-    ViewData["Title"] = "Secure Page";
+    Layout = null;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Secure Page</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Close Window</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            window.close(); // Forsøker å lukke vinduet
+        }
+    </script>
+</head>
+<body>
+    <p>Vinduet lukkes...</p>
+</body>
+</html>

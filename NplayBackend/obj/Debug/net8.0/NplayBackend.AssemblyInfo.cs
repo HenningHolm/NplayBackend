@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NplayBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2785ca119422735b42d23f1c4906b8c3fa9d30ce")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ba261eebf4661226d569bab209d7c13c19ec57a")]
 [assembly: System.Reflection.AssemblyProductAttribute("NplayBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NplayBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
