@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using NPlay.Data.Enitites;
 using NplayBackend.Models.Dto;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -8,7 +10,17 @@ namespace NplayBackend.Controllers.Api
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
-    { 
+    {
+
+        private readonly ILogger<UserController> _logger;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+
+        public UserController(ILogger<UserController> logger, SignInManager<ApplicationUser> signInManager)
+        {
+            _logger = logger;
+            _signInManager = signInManager;
+        }
+
         [HttpGet]
         public ActionResult<UserDataDto> GetUser()
         {
@@ -30,6 +42,14 @@ namespace NplayBackend.Controllers.Api
                 return Unauthorized();
             }
         }
+
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok();
+        }
+
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
