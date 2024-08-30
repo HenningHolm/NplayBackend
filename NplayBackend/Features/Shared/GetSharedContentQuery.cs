@@ -1,5 +1,5 @@
 ﻿
-using Lojal.Shared.Models.Settings;
+using NPlay.Shared.Models.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using NplayBackend.Data;

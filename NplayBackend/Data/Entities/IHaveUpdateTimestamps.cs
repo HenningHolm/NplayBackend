@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Lojal.Data.Enitites
+namespace NPlay.Data.Enitites
 {
     public interface IHaveUpdateTimestamps
     {

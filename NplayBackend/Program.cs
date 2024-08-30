@@ -1,4 +1,5 @@
-using Lojal.Shared.Models.Settings;
+using NPlay.Data.Enitites;
+using NPlay.Shared.Models.Settings;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NplayBackend.Data;
@@ -19,7 +20,7 @@ builder.Services.AddCors(options =>
                builder => builder.WithOrigins("http://localhost:5173").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 });
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<NplayDbContext>();
 
 builder.Services.AddAuthentication()

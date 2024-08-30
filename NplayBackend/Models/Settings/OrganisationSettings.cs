@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Lojal.Shared.Models.Settings
+namespace NPlay.Shared.Models.Settings
 {
     public class OrganisationSettings
     {
