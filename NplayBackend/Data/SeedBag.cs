@@ -8,9 +8,9 @@ namespace NplayBackend.Data;
     {
             return
             [
-                new Song { Id = new Guid(), Name = "All I Want", Artist = "Kodaline", Published = 2013 },
-                new Song { Id = new Guid(), Name = "High Hopes", Artist = "Kodaline", Published = 2013 },
-                new Song { Id = new Guid(), Name = "All By Myself", Artist = "Celine Dion", Published = 1996 },    
+                new Song { Id = new Guid(), Title = "All I Want", Artist = "Kodaline" },
+                new Song { Id = new Guid(), Title = "High Hopes", Artist = "Kodaline" },
+                new Song { Id = new Guid(), Title = "All By Myself", Artist = "Celine Dion"},    
             ];
         }
     }
