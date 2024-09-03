@@ -15,4 +15,21 @@ public class NplayDbContext : IdentityDbContext<ApplicationUser>
     {
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        var songAndChordsSeed = SeedBag.GetSongAndChordsSeed();
+
+        modelBuilder.Entity<Song>(song =>
+        {
+            song.HasData(songAndChordsSeed.SongList);
+        });
+
+        modelBuilder.Entity<SimpleChords>(chords =>
+        {
+            chords.HasData(songAndChordsSeed.ChordsList);
+        });
+    }
 }
+

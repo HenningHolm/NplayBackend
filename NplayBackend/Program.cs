@@ -1,6 +1,5 @@
 using NPlay.Data.Enitites;
 using NPlay.Shared.Models.Settings;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NplayBackend.Data;
 using NplayBackend.DI;
