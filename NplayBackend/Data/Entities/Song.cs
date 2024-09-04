@@ -24,8 +24,8 @@ public class Song
     public int? BPM { get; set; }
     public GeneralDifficulty Difficulty { get; set; }
     public List<Recognition>? Recognitions { get; set; }
-    
     public string? SpotifyCode { get; set; }
     public string? YoutubeCode { get; set; }
+    public List<string>? ChromaArray { get; set; }
     public bool Approved { get; set; }
 }

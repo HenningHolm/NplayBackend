@@ -11,11 +11,7 @@ public class SimpleChords {
     public List<string>? ChorusEnd { get; set; }
     public List<string>? Bridge { get; set; }
     public List<string>? Outro { get; set; }
-
     public bool Approved { get; set; }
-
     public Guid SongId { get; set; }
     public Song Song { get; set; }
 }
-
-

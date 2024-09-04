@@ -4,7 +4,7 @@ namespace NplayBackend.Features.Song;
 
 public interface ISetSongCommand
 {
-    Task ExecuteAsync(SongDto song);
+    Task ExecuteAsync(SongMinimalDto song);
 }
 
 
@@ -19,7 +19,7 @@ public class SetSongCommand : ISetSongCommand
         _context = context;
     }
 
-    public async Task ExecuteAsync(SongDto song)
+    public async Task ExecuteAsync(SongMinimalDto song)
     {
         try
         {

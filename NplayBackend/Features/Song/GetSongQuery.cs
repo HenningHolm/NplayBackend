@@ -1,4 +1,5 @@
-﻿using NplayBackend.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using NplayBackend.Data;
 using NplayBackend.Models.Dto;
 
 namespace NplayBackend.Features.Song;
@@ -6,7 +7,7 @@ namespace NplayBackend.Features.Song;
 
 public interface IGetSongQuery
 {
-    Task<SongDto> ExecuteAsync(string id);
+    Task<SongMinimalDto?> ExecuteAsync(Guid id);
 }
 
 public class GetSongQuery : IGetSongQuery
@@ -19,28 +20,21 @@ public class GetSongQuery : IGetSongQuery
         _logger = logger;
         _context = context;
     }
-    public async Task<SongDto> ExecuteAsync(string id)
+    public async Task<SongMinimalDto?> ExecuteAsync(Guid id)
     {
         try
         {
-            //var song = await _context.Songs.FirstOrDefaultAsync(s => s.Id == id);
-
-            var song = new SongDto
-            {
-                Id = "1",
-                Name = "SongName",
-                Artist = "ArtistName",
-                Published = 2021
-            };
+            var song = await _context.Songs.FirstOrDefaultAsync(s => s.Id == id);
+            
             if (song == null)
             {
                 return null;
             }
-            return new SongDto { Artist = song.Artist, Name = song.Name, Published = song.Published, Id = song.Id };
+            return new SongMinimalDto { Id = song.Id, Artist = song.Artist, Title = song.Title};
         }
         catch (Exception e)
         {
-            _logger.LogError(e, $"Exception occured during GetOverviewNoteQuery");
+            _logger.LogError(e, $"Exception occured during GetSongQuery");
             throw;
         }
     }

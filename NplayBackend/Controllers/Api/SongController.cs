@@ -5,7 +5,7 @@ using NplayBackend.Models.Dto;
 
 namespace NplayBackend.Controllers.Api;
 
-[Authorize]
+//[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class SongController : ControllerBase
@@ -13,22 +13,23 @@ public class SongController : ControllerBase
     private readonly ILogger<SongController> _logger;
     private readonly ISetSongCommand _setSongCommand;
     private readonly IGetSongQuery _getSongQuery;
+    private readonly IGetAllSongsQuery _getAllSongsQuery;
 
-    public SongController(ILogger<SongController> logger, IGetSongQuery getSongQuery, ISetSongCommand setSongCommand)
+    public SongController(ILogger<SongController> logger, IGetSongQuery getSongQuery, ISetSongCommand setSongCommand, IGetAllSongsQuery getAllSongsQuery)
     {
         _logger = logger;
         _getSongQuery = getSongQuery;
+        _getAllSongsQuery = getAllSongsQuery;
         _setSongCommand = setSongCommand;
     }
+
+
+
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<SongDto>> GetSong(string id)
-    
+    public async Task<ActionResult<SongMinimalDto>> GetSong(Guid id)
     {
-        // get user info
-        var user = User;
-
         try
         {
             var song = await _getSongQuery.ExecuteAsync(id);
@@ -43,8 +44,31 @@ public class SongController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+
+
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<IEnumerable<SongMinimalDto>>> GetAllSongs()
+    {
+        try
+        {
+            var song = await _getAllSongsQuery.ExecuteAsync();
+            if (song == null)
+            {
+                return NotFound();
+            }
+            return Ok(song);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+
     [HttpPost]
-    public async Task<ActionResult> SetNote(SongDto song)
+    public async Task<ActionResult> SetNote(SongMinimalDto song)
     {
         try
         {

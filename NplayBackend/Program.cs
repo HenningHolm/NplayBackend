@@ -3,8 +3,12 @@ using NPlay.Shared.Models.Settings;
 using Microsoft.EntityFrameworkCore;
 using NplayBackend.Data;
 using NplayBackend.DI;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("NplayDb") ?? throw new InvalidOperationException("Connection string not found.");
@@ -46,6 +50,9 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
