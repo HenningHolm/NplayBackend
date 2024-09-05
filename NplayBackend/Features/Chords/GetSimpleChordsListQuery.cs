@@ -1,21 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NplayBackend.Data;
+using NplayBackend.Data.Entities;
 using NplayBackend.Models.Dto;
 using NplayBackend.Models.Shared;
 
 namespace NplayBackend.Features.Chords;
 
-    public interface IGetBasicChordsListQuery
+    public interface IGetSimpleChordsListQuery
 {
     Task<PaginatedResult<ChordsMinimalDto>> ExecuteAsync(int pageNumber, int pageSize);
 }
 
-public class GetBasicChordsListQuery : IGetBasicChordsListQuery
+public class GetSimpleChordsListQuery : IGetSimpleChordsListQuery
 {
-    private readonly ILogger<GetBasicChordsListQuery> _logger;
+    private readonly ILogger<GetSimpleChordsListQuery> _logger;
     private readonly NplayDbContext _context;
 
-    public GetBasicChordsListQuery(ILogger<GetBasicChordsListQuery> logger, NplayDbContext context)
+    public GetSimpleChordsListQuery(ILogger<GetSimpleChordsListQuery> logger, NplayDbContext context)
     {
         _logger = logger;
         _context = context;
@@ -25,18 +26,19 @@ public class GetBasicChordsListQuery : IGetBasicChordsListQuery
     {
         try
         {
+            // Tell antall godkjente akkorder der ChromaArray ikke er null og inneholder elementer
             var totalApprovedChords = await _context.SimpleChords
-                .Where(c => c.Approved)
+                .Where(c => c.Approved && c.Song.ChromaArray != null && c.Song.ChromaArray.Any())
                 .CountAsync();
 
-            // Utfør paginert spørring
+            // Utfør paginert spørring der ChromaArray ikke er null og inneholder elementer
             var chordsQuery = _context.SimpleChords
-                .Where(c => c.Approved)
-                .OrderBy(c => c.Song.Title) // Valgfritt: sorter etter tittel
+                .Where(c => c.Approved && c.Song.ChromaArray != null && c.Song.ChromaArray.Any())
+                .OrderBy(c => c.Song.Title) // Sorter etter tittel for lesbarhet
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize);
 
-            // Projiser resultatene til ChordsSearchListDto
+            // Projiser resultatene til ChordsMinimalDto
             var chordsList = await chordsQuery
                 .Select(c => new ChordsMinimalDto
                 {

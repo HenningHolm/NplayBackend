@@ -3,17 +3,17 @@ using NplayBackend.Data;
 using NplayBackend.Models.Dto;
 
 namespace NplayBackend.Features.Chords;
-public interface ISearchBasicChordsQuery
+public interface ISearchSimpleChordsQuery
 {
     Task<IEnumerable<ChordsMinimalDto>> ExecuteAsync(string searchString);
 }
 
-public class SearchBasicChordsQuery : ISearchBasicChordsQuery
+public class SearchSimpleChordsQuery : ISearchSimpleChordsQuery
 {
-    private readonly ILogger<SearchBasicChordsQuery> _logger;
+    private readonly ILogger<SearchSimpleChordsQuery> _logger;
     private readonly NplayDbContext _context;
 
-    public SearchBasicChordsQuery(ILogger<SearchBasicChordsQuery> logger, NplayDbContext context)
+    public SearchSimpleChordsQuery(ILogger<SearchSimpleChordsQuery> logger, NplayDbContext context)
     {
         _logger = logger;
         _context = context;

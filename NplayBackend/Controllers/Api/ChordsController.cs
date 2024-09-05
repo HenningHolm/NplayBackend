@@ -9,13 +9,15 @@ namespace NplayBackend.Controllers
     [Route("api/[controller]")]
     public class ChordsController : ControllerBase
     {
-        private readonly IGetBasicChordsListQuery _getBasicChordsListQuery;
-        private readonly ISearchBasicChordsQuery _searchBasicChordsQuery;
+        private readonly IGetSimpleChordsListQuery _getBasicChordsListQuery;
+        private readonly ISearchSimpleChordsQuery _searchBasicChordsQuery;
+        private readonly IApproveSimpleChordsCommand _approveSimpleChordsCommand;
 
-        public ChordsController(IGetBasicChordsListQuery getBasicChordsListQuery, ISearchBasicChordsQuery searchBasicChordsQuery)
+        public ChordsController(IGetSimpleChordsListQuery getBasicChordsListQuery, ISearchSimpleChordsQuery searchBasicChordsQuery, IApproveSimpleChordsCommand approveSimpleChordsCommand)
         {
             _getBasicChordsListQuery = getBasicChordsListQuery;
             _searchBasicChordsQuery = searchBasicChordsQuery;
+            _approveSimpleChordsCommand = approveSimpleChordsCommand;
         }
 
         // Endpoint for all approved basic chords by pagination
@@ -58,6 +60,29 @@ namespace NplayBackend.Controllers
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing your request. Error: " + ex.Message );
+            }
+        }
+
+        //legg inn et ende punkt for å hente ikke godkjente akkorder, med litt extra info.
+
+
+        [HttpGet("approve/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<string>>> ApproveSimpleChords(Guid id)
+        {
+            try
+            {
+                var results = await _approveSimpleChordsCommand.ExecuteAsync(id);
+                if (results == null)
+                {
+                    return NotFound();
+                }
+                return Ok(results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing your request. Error: " + ex.Message);
             }
         }
     }

@@ -14,8 +14,9 @@ public static class Providers
         services.AddTransient<ISetSongCommand, SetSongCommand>();
         services.AddTransient<IGetAllSongsQuery, GetAllSongsQuery>();
 
-        services.AddTransient<IGetBasicChordsListQuery, GetBasicChordsListQuery>();
-        services.AddTransient<ISearchBasicChordsQuery, SearchBasicChordsQuery>();
+        services.AddTransient<IGetSimpleChordsListQuery, GetSimpleChordsListQuery>();
+        services.AddTransient<ISearchSimpleChordsQuery, SearchSimpleChordsQuery>();
+        services.AddTransient<IApproveSimpleChordsCommand, ApproveSimpleChordsCommand>();
     }
 }
 
