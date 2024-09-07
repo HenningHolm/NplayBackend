@@ -2,19 +2,19 @@
 using NplayBackend.Data;
 using NplayBackend.Data.Entities;
 
-namespace NplayBackend.Features.Chords;
+namespace NplayBackend.Features;
 
-public interface IApproveSimpleChordsCommand
+public interface IApprovePrimarySimpleChordsCommand
 {
     Task<List<string>> ExecuteAsync(Guid chordsId);
 }
 
-public class ApproveSimpleChordsCommand : IApproveSimpleChordsCommand
+public class ApprovePrimarySimpleChordsCommand : IApprovePrimarySimpleChordsCommand
 {
-    private readonly ILogger<ApproveSimpleChordsCommand> _logger;
+    private readonly ILogger<ApprovePrimarySimpleChordsCommand> _logger;
     private readonly NplayDbContext _context;
 
-    public ApproveSimpleChordsCommand(ILogger<ApproveSimpleChordsCommand> logger, NplayDbContext context)
+    public ApprovePrimarySimpleChordsCommand(ILogger<ApprovePrimarySimpleChordsCommand> logger, NplayDbContext context)
     {
         _logger = logger;
         _context = context;
@@ -36,6 +36,8 @@ public class ApproveSimpleChordsCommand : IApproveSimpleChordsCommand
 
         // Update the Song's ChromaArray with the sorted list
         simpleChords.Song.ChromaArray = sortedChords;
+
+        simpleChords.Song.PrimarySimpleChordsId = simpleChords.Id;
 
         // Mark the chords as approved
         simpleChords.Approved = true;

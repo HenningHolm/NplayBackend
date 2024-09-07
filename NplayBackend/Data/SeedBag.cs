@@ -1,5 +1,6 @@
 ﻿
 using NplayBackend.Data.Entities;
+using NplayBackend.Models.Shared;
 namespace NplayBackend.Data;
 
 public class SeedSongAndChordResults
@@ -32,7 +33,7 @@ public static class SeedBag
             Verse = new List<string> { "0+", "9+m", "5+", "7+" },
             Chorus = new List<string> { "9+m", "5+", "0+", "7+" },
             SongId = songPerfect.Id,
-            Approved = true
+            Approved = false
         };
 
         // Castle on the Hill
@@ -56,7 +57,7 @@ public static class SeedBag
             Chorus = new List<string> { "0+", "5+", "9+m", "7+" },
             Bridge = new List<string> { "9+m", "5+", "0+", "7+" },
             SongId = songCastleOnTheHill.Id,
-            Approved = true
+            Approved = false
         };
 
         // Shivers
@@ -78,7 +79,7 @@ public static class SeedBag
             Verse = new List<string> { "9+m", "5+", "0+", "7+" },
             Chorus = new List<string> { "9+m", "5+", "0+", "7+" },
             SongId = songShivers.Id,
-            Approved = true
+            Approved = false
         };
 
         // Overpass Graffiti
@@ -92,7 +93,7 @@ public static class SeedBag
             Difficulty = GeneralDifficulty.Medium,
             SpotifyCode = "spotify:track:4btFHqumCO31GksfuBLLv3",
             YoutubeCode = "k6ZoE4RrcDs",
-            Approved = true
+            Approved = false
         };
         var chordsOverpassGraffiti = new SimpleChords
         {
@@ -102,7 +103,7 @@ public static class SeedBag
             Chorus = new List<string> { "0+", "7+", "2+m", "5+" },
             ChorusEnd = new List<string> { "7+" },
             SongId = songOverpassGraffiti.Id,
-            Approved = true
+            Approved = false
         };
 
         // Thinking Out Loud
@@ -126,7 +127,7 @@ public static class SeedBag
             Chorus = new List<string> { "0+", "9+m7", "5+", "7+" },
             ChorusEnd = new List<string> { "9+m", "7+", "5+", "0+", "5+", "7+", "0+" },
             SongId = songThinkingOutLoud.Id,
-            Approved = true
+            Approved = false
         };
 
         // Shape of You
@@ -176,7 +177,7 @@ public static class SeedBag
             Verse = new List<string> { "0+", "9+m", "5+", "7+" },
             Chorus = new List<string> { "0+", "9+m", "5+", "7+" },
             SongId = songIDontCare.Id,
-            Approved = true
+            Approved = false
         };
 
         return new SeedSongAndChordResults

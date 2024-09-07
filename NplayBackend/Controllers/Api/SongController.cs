@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NplayBackend.Features.Song;
+using NplayBackend.Features;
 using NplayBackend.Models.Dto;
 
 namespace NplayBackend.Controllers.Api;
@@ -11,18 +11,15 @@ namespace NplayBackend.Controllers.Api;
 public class SongController : ControllerBase
 {
     private readonly ILogger<SongController> _logger;
-    private readonly ISetSongCommand _setSongCommand;
     private readonly IGetSongQuery _getSongQuery;
     private readonly IGetAllSongsQuery _getAllSongsQuery;
 
-    public SongController(ILogger<SongController> logger, IGetSongQuery getSongQuery, ISetSongCommand setSongCommand, IGetAllSongsQuery getAllSongsQuery)
+    public SongController(ILogger<SongController> logger, IGetSongQuery getSongQuery, IAddSongCommand setSongCommand, IGetAllSongsQuery getAllSongsQuery)
     {
         _logger = logger;
         _getSongQuery = getSongQuery;
         _getAllSongsQuery = getAllSongsQuery;
-        _setSongCommand = setSongCommand;
     }
-
 
 
     [HttpGet("{id}")]
@@ -67,18 +64,18 @@ public class SongController : ControllerBase
     }
 
 
-    [HttpPost]
-    public async Task<ActionResult> SetNote(SongMinimalDto song)
-    {
-        try
-        {
-            await _setSongCommand.ExecuteAsync(song);
-            return Ok();
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-    }
+    //[HttpPost]
+    //public async Task<ActionResult> SetNote(SongMinimalDto song)
+    //{
+    //    try
+    //    {
+    //        await _setSongCommand.ExecuteAsync(song);
+    //        return Ok();
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        return BadRequest(ex.Message);
+    //    }
+    //}
 }
 

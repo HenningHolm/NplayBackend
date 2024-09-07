@@ -2,12 +2,12 @@
 using NplayBackend.Data;
 using NplayBackend.Models.Dto;
 
-namespace NplayBackend.Features.Song;
+namespace NplayBackend.Features;
 
 
 public interface IGetSongQuery
 {
-    Task<SongMinimalDto?> ExecuteAsync(Guid id);
+    Task<SongDto?> ExecuteAsync(Guid id);
 }
 
 public class GetSongQuery : IGetSongQuery
@@ -20,23 +20,39 @@ public class GetSongQuery : IGetSongQuery
         _logger = logger;
         _context = context;
     }
-    public async Task<SongMinimalDto?> ExecuteAsync(Guid id)
+    public async Task<SongDto?> ExecuteAsync(Guid id)
     {
         try
         {
-            var song = await _context.Songs.FirstOrDefaultAsync(s => s.Id == id);
-            
+            var song = await _context.Songs
+                .FirstOrDefaultAsync(s => s.Id == id);
+
             if (song == null)
             {
+                _logger.LogWarning($"Song with id {id} not found.");
                 return null;
             }
-            return new SongMinimalDto { Id = song.Id, Artist = song.Artist, Title = song.Title};
+
+            var songDto = new SongDto
+            {
+                Id = song.Id,
+                Title = song.Title,
+                Artist = song.Artist,
+                Chroma = song.Chroma,
+                Scale = song.Scale,
+                BPM = song.BPM,
+                Difficulty = song.Difficulty,
+                Recognitions = song.Recognitions,
+                SpotifyCode = song.SpotifyCode,
+                YoutubeCode = song.YoutubeCode,
+            };
+
+            return songDto;
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            _logger.LogError(e, $"Exception occured during GetSongQuery");
+            _logger.LogError(ex, "An error occurred while fetching the song.");
             throw;
         }
     }
-
 }

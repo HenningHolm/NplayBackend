@@ -1,7 +1,7 @@
-﻿namespace NplayBackend.Data.Entities;
+﻿namespace NplayBackend.Models.Dto;
 
-
-public class SimpleChords { 
+public class SimpleChordsDto
+{
     public Guid Id { get; set; }
     public List<string>? Intro { get; set; }
     public List<string>? Verse { get; set; }
@@ -11,7 +11,6 @@ public class SimpleChords {
     public List<string>? ChorusEnd { get; set; }
     public List<string>? Bridge { get; set; }
     public List<string>? Outro { get; set; }
-    public bool Approved { get; set; }
-    public Guid SongId { get; set; }
-    public Song Song { get; set; }
 }
+
+

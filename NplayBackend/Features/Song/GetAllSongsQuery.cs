@@ -2,7 +2,7 @@
 using NplayBackend.Data;
 using NplayBackend.Models.Dto;
 
-namespace NplayBackend.Features.Song;
+namespace NplayBackend.Features;
 
 public interface IGetAllSongsQuery
 {

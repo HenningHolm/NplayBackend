@@ -1,6 +1,5 @@
-﻿using NplayBackend.Features.Chords;
-using NplayBackend.Features.Shared;
-using NplayBackend.Features.Song;
+﻿using NplayBackend.Features.Shared;
+using NplayBackend.Features;
 
 namespace NplayBackend.DI;
 
@@ -11,12 +10,19 @@ public static class Providers
         services.AddTransient<IGetSharedContentQuery, GetSharedContentQuery>();
         
         services.AddTransient<IGetSongQuery, GetSongQuery>();
-        services.AddTransient<ISetSongCommand, SetSongCommand>();
+        services.AddTransient<IAddSongCommand, AddSongCommand>();
         services.AddTransient<IGetAllSongsQuery, GetAllSongsQuery>();
 
-        services.AddTransient<IGetSimpleChordsListQuery, GetSimpleChordsListQuery>();
-        services.AddTransient<ISearchSimpleChordsQuery, SearchSimpleChordsQuery>();
-        services.AddTransient<IApproveSimpleChordsCommand, ApproveSimpleChordsCommand>();
+        services.AddTransient<IGetAllSongWithSimpleChordsQuery, GetAllSongWithSimpleChordsQuery>();
+        services.AddTransient<ISearchSongWithSimpleChordsQuery, SearchSongWithSimpleChordsQuery>();
+        services.AddTransient<IApprovePrimarySimpleChordsCommand, ApprovePrimarySimpleChordsCommand>();
+        services.AddTransient<IGetSongAndPrimarySimpleChordsQuery, GetSongAndPrimarySimpleChordsQuery>();
+        services.AddTransient<IGetAllNonApprovedSimpleChordsQuery, GetAllNonApprovedSimpleChordsQuery>();
+        services.AddTransient<IGetSongAndNonApprovedSimpleChords, GetSongAndNonApprovedSimpleChords>();
+        services.AddTransient<IAddSimpleChordsCommand, AddSimpleChordsCommand>();
+
+
+
     }
 }
 
